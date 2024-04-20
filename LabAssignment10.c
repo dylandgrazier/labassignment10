@@ -26,7 +26,7 @@ void insert(struct Trie *pTrie, char *word)
 {
 	struct Trie* tmp = pTrie;
     
-    for (int i = 0; i < strlen(word); i++){
+	for (int i = 0; i < strlen(word); i++){
 
         int index = word[i] - 'a';
 
@@ -41,7 +41,7 @@ void insert(struct Trie *pTrie, char *word)
 // computes the number of occurances of the word
 int numberOfOccurances(struct Trie *pTrie, char *word)
 {
-	 for (int i = 0; i < strlen(word); i++){
+	for (int i = 0; i < strlen(word); i++){
 
         int index = word[i] - 'a';
 
@@ -62,12 +62,12 @@ struct Trie *deallocateTrie(struct Trie *pTrie)
 	}
 
 	else if (pTrie != NULL) {
-        for (int i = 0; i < 26; i++) {
-            if (pTrie->children[i] != NULL) {
-                deallocateTrie(pTrie->children[i]);
-            }
-        }
-        free(pTrie);
+	        for (int i = 0; i < 26; i++) {
+	            if (pTrie->children[i] != NULL) {
+	                deallocateTrie(pTrie->children[i]);
+	            }
+	        }
+	        free(pTrie);
     }
     return NULL;
 }
@@ -77,23 +77,23 @@ struct Trie *deallocateTrie(struct Trie *pTrie)
 int readDictionary(char *filename, char **pInWords)
 {
 	FILE* file;
-    int count = 0;
-    char words[256];
-
-    file = fopen(filename, "r");
-    if (file == NULL) {
-        exit(1);
-    }
-
-    fscanf(file, "%d", &count);
-
-    for (int i = 0; i < count; ++i) {
-        fscanf(file, "%s", words);
-        pInWords[i] = strdup(words);
-    }
-
-    fclose(file);
-    return count;
+	int count = 0;
+	char words[256];
+	
+	file = fopen(filename, "r");
+	if (file == NULL) {
+		exit(1);
+	}
+	
+	fscanf(file, "%d", &count);
+	
+	for (int i = 0; i < count; ++i) {
+		fscanf(file, "%s", words);
+	        pInWords[i] = strdup(words);
+	}
+	
+	fclose(file);
+	return count;
 }
 
 int main(void)
